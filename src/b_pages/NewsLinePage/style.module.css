@@ -1,0 +1,10 @@
+.active{
+    color: white;
+    cursor: pointer;
+}
+
+.link{
+    opacity: 0.6;
+    color: white;
+    cursor: pointer;
+}

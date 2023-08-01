@@ -1,0 +1,1 @@
+export {NewsLineCard} from './ui/card'

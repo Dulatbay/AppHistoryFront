@@ -1,0 +1,1 @@
+export {QuizesPageHeader} from './ui'
