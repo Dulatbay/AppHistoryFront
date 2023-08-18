@@ -5,9 +5,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BoltIcon from '@mui/icons-material/Bolt';
 import {BackgroundImage} from "@/f_shared/BackgroundImage";
 import {FocusableContainer} from "@/f_shared/FocusableContainer";
-import {ReactNode} from "react";
+import {MouseEventHandler, ReactNode} from "react";
+import {Module} from "@/e_entities/module/model/types";
+import {useNavigate} from "react-router-dom";
 
-const iconState = (icon : ReactNode, text : string) => {
+const iconState = (icon: ReactNode, text: string) => {
     return <Stack flexDirection={'row'}
                   alignItems={'center'}
                   gap={0.5}>
@@ -16,17 +18,13 @@ const iconState = (icon : ReactNode, text : string) => {
     </Stack>
 }
 
-interface Props {
-    imageSrc : string,
-    title : string,
-    description : string,
-    questions : number,
-    minutes: number,
-    passedUsers: number,
-    level: number
-}
 
-export const ModuleCard = ({imageSrc, title, description, questions, minutes, passedUsers, level} : Props) => {
+export const ModuleCard = ({imageUrl, title, description, questionsCount, minutes, passedUsersCount, level, id, topicsCount, number}: Module) => {
+    const navigate = useNavigate()
+    const cardClickHandle: MouseEventHandler = (event) => {
+        navigate(`/modules/${id}`)
+    }
+
     return (
         <FocusableContainer focusColor={'#66BB6A'} boxShadowColor={'rgba(185,185,185,0.18)'} borderRadius={5}>
             <Box width={'100%'}
@@ -34,8 +32,9 @@ export const ModuleCard = ({imageSrc, title, description, questions, minutes, pa
                  sx={{
                      aspectRatio: '16 / 9',
                  }}
+                 onClick={cardClickHandle}
             >
-                <BackgroundImage imageSrc={imageSrc}/>
+                <BackgroundImage imageSrc={imageUrl}/>
                 <Stack
                     position={'absolute'}
                     bottom={24}
@@ -60,9 +59,10 @@ export const ModuleCard = ({imageSrc, title, description, questions, minutes, pa
                         {description}
                     </Typography>
                     <Stack flexDirection={'row'} gap={2}>
-                        {iconState(<QuizIcon htmlColor={'#9632A6'}/>, `${questions} вопросов`)}
+                        {iconState(<QuizIcon htmlColor={'#9632A6'}/>, `${questionsCount} вопросов`)}
                         {iconState(<AccessTimeFilledIcon htmlColor={'rgba(0,255,240,0.5)'}/>, `${minutes} минут`)}
-                        {iconState(<AccountCircleIcon htmlColor={'rgba(245,245,245,0.89)'}/>, `${passedUsers} пользователей`)}
+                        {iconState(<AccountCircleIcon
+                            htmlColor={'rgba(245,245,245,0.89)'}/>, `${passedUsersCount} пользователей`)}
                     </Stack>
                     <Stack flexDirection={'row'}
                            justifyContent={'space-between'}
@@ -74,8 +74,8 @@ export const ModuleCard = ({imageSrc, title, description, questions, minutes, pa
                                         sx={{opacity: 0.6}}
                                         fontWeight={400}>Сложность:</Typography>
                             <Stack flexDirection={'row'}>
-                                {Array.from({ length: level }).map((_, index) => (
-                                    <BoltIcon key={index} htmlColor={'#DADE1B'} />
+                                {Array.from({length: level}).map((_, index) => (
+                                    <BoltIcon key={index} htmlColor={'#DADE1B'}/>
                                 ))}
                             </Stack>
                         </Stack>

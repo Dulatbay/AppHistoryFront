@@ -30,7 +30,7 @@ export const ArchivePage = () => {
                 </Stack>
                 <ClassSwitcher/>
             </Stack>
-            <CardsViewer cards={books} />
+            <CardsViewer cards={books}/>
             <CardsViewer title={'Архивы с курсов'} cards={books}/>
             <CardsViewer title={'Карты'} cards={maps}/>
         </Stack>

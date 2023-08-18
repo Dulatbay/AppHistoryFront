@@ -8,7 +8,7 @@ const classes = ['Все', '5 класс', '6 класс', '7 класс', '8 к
 export const ClassSwitcher = () => {
     const [activeIndex, setActiveIndex] = useState(0)
 
-    const setActiveHandler = (index) => setActiveIndex(index)
+    const setActiveHandler = (index: number) => setActiveIndex(index)
 
     return (
         <>

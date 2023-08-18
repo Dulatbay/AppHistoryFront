@@ -1,9 +1,32 @@
-import {Box, Button, InputAdornment, OutlinedInput, Stack, Typography} from "@mui/material";
+import {Box, Button, InputAdornment, OutlinedInput, SelectChangeEvent, Stack, Typography} from "@mui/material";
 import {Selector} from "@/f_shared/Selector";
 import SearchIcon from "@mui/icons-material/Search";
 import {TitleText} from "@/f_shared/TitleText";
+import React, {useCallback} from "react";
+import {useNavigate} from "react-router-dom";
 
-export const QuizesPageHeader = () => {
+interface props {
+    setCurrentCategoryIndex: (index: number) => void,
+    setCurrentTypeIndex: (index: number) => void,
+    currentTypeIndex: number,
+    currentCategoryIndex: number
+}
+
+export const QuizesPageHeader = ({setCurrentCategoryIndex, setCurrentTypeIndex, currentTypeIndex, currentCategoryIndex}: props) => {
+    const navigate = useNavigate()
+
+    const handleCurrentCategoryIndexChange = (event: SelectChangeEvent<number>) => {
+        setCurrentCategoryIndex(+event.target.value);
+    };
+    const handleCurrentTypeIndexChange = (event: SelectChangeEvent<number>) => {
+        setCurrentTypeIndex(+event.target.value);
+    };
+
+
+    const onCreateButtonHandler = useCallback(() => {
+        navigate('/quizzes/create')
+    }, [navigate]);
+
     return (
         <>
             <Stack flexDirection={'row'}
@@ -20,10 +43,14 @@ export const QuizesPageHeader = () => {
                        flex={2}
                        gap={3}>
                     <Box flex={1}>
-                        <Selector items={['Популярные', 'Новые', 'Топовые', 'Мои квизы']}/>
+                        <Selector items={['Популярные', 'Новые', 'Топовые', 'Мои квизы']}
+                                  current={currentCategoryIndex}
+                                  handleChange={handleCurrentCategoryIndexChange}/>
                     </Box>
                     <Box flex={1}>
-                        <Selector items={['Все', 'Пройденные', 'Не пройденные']}/>
+                        <Selector items={['Все', 'Пройденные', 'Не пройденные']}
+                                  current={currentTypeIndex}
+                                  handleChange={handleCurrentTypeIndexChange}/>
                     </Box>
                 </Stack>
             </Stack>
@@ -49,9 +76,10 @@ export const QuizesPageHeader = () => {
                        justifyContent={'end'}
                        flexDirection={'row'}>
                     <Button
+
                         variant="contained"
                         size={'large'}
-                        color={'success'}>Создать</Button>
+                        color={'success'} onClick={onCreateButtonHandler}>Создать</Button>
                 </Stack>
             </Stack>
         </>

@@ -1,14 +1,14 @@
 import {Box, Typography, useTheme} from "@mui/material";
 
 
-interface Props
-{
-    text : string,
-    isActive:boolean,
-    setIsActiveHandler : (index: number) => void,
-    index : number
+interface Props {
+    text: string,
+    isActive: boolean,
+    setIsActiveHandler: (index: number) => void,
+    index: number
 }
-export const ClassContainer = ({text, isActive, setIsActiveHandler, index} : Props) => {
+
+export const ClassContainer = ({text, isActive, setIsActiveHandler, index}: Props) => {
     const theme = useTheme()
 
     return <>

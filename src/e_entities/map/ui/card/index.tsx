@@ -2,8 +2,12 @@ import {Box, Fab, Stack, Typography} from "@mui/material";
 import styles from './styles.module.css'
 import DownloadingIcon from "@mui/icons-material/Downloading";
 
-interface Props {imageSrc : string, title: string}
-export const MapCard = ({imageSrc, title} : Props) => {
+interface Props {
+    imageSrc: string,
+    title: string
+}
+
+export const MapCard = ({imageSrc, title}: Props) => {
     return (
         <Stack width={340} alignItems={'center'} gap={1}>
             <Box height={185} width={'100%'} borderRadius={5} overflow={'hidden'}>

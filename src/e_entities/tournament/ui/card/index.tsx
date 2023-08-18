@@ -2,9 +2,13 @@ import {Box, Stack, Typography} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {BackgroundImage} from "@/f_shared/BackgroundImage";
 import {FocusableContainer} from "@/f_shared/FocusableContainer";
-interface Props {imageSrc : string, title: string}
 
-export const TournamentCard = ({imageSrc} : Props) => {
+interface Props {
+    imageSrc: string,
+    title: string
+}
+
+export const TournamentCard = ({imageSrc}: Props) => {
     return (
         <FocusableContainer borderRadius={5} focusColor={'#A59A36'} boxShadowColor={'rgba(185,185,185,0.18)'}>
             <Box width={350}

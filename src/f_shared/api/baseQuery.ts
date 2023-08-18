@@ -2,11 +2,11 @@ import {fetchBaseQuery} from "@reduxjs/toolkit/query";
 
 export const baseQuery = fetchBaseQuery({
     baseUrl: "https://localhost:7279/api/",
-    prepareHeaders: (headers, { getState }) => {
-        const { accessToken } = (getState() as RootState).session
+    prepareHeaders: (headers, {getState}) => {
+        const {token} = (getState() as RootState).session
 
-        if (accessToken) {
-            headers.set('Authorization', `Bearer ${accessToken}`)
+        if (token) {
+            headers.set('Authorization', `Bearer ${token}`)
         }
 
         return headers

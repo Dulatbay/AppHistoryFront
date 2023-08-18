@@ -4,10 +4,10 @@ import {PageContentContainer} from "@/f_shared/PageContentContainer";
 import {ReactNode} from "react";
 
 interface Props {
-    children : ReactNode
+    children: ReactNode
 }
 
-export const PageWithTabBar = ({children} : Props) => {
+export const PageWithTabBar = ({children}: Props) => {
     return (
         <>
             <Box sx={{

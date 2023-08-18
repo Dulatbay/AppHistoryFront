@@ -1,11 +1,15 @@
 import {Box, Stack, Typography} from "@mui/material";
-import React from "react";
-import {useState} from "react";
+import React, {useState} from "react";
 
 interface variantContainerProps {
-    text: string, index : number, arrayLength : number, isActive : boolean, setActiveIndexHandler : Function
+    text: string,
+    index: number,
+    arrayLength: number,
+    isActive: boolean,
+    setActiveIndexHandler: Function
 }
-const variantContainer = (args : variantContainerProps) => {
+
+const variantContainer = (args: variantContainerProps) => {
     const {index, isActive, arrayLength, setActiveIndexHandler, text} = args
     const getBorderRadius = () => {
         if (index === 0) return '10px 0 0 10px'
@@ -45,10 +49,11 @@ const variantContainer = (args : variantContainerProps) => {
 interface props {
     variants: string[]
 }
-export const Switcher = ({variants} : props) => {
+
+export const Switcher = ({variants}: props) => {
     const [activeIndex, setActiveIndex] = useState(0)
 
-    const setActiveIndexHandler = (index : number) => setActiveIndex(index)
+    const setActiveIndexHandler = (index: number) => setActiveIndex(index)
 
     return (
         <Stack flexDirection={'row'}

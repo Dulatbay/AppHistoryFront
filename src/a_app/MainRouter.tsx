@@ -3,13 +3,20 @@ import {HomePage} from "@/b_pages/HomePage";
 import {PageWithTabBar} from "@/b_pages/PageWithTabBar";
 import {NewsLinePage} from "@/b_pages/NewsLinePage";
 import {LearnPage} from "@/b_pages/LearnPage";
-import {QuizesPage} from "@/b_pages/QuizesPage";
+import {QuizesPage} from "b_pages/QuizzesPage";
 import {TournamentsPage} from "@/b_pages/TournamentsPage";
 import {ArchivePage} from "@/b_pages/ArchivePage";
 import {SettingsPage} from "@/b_pages/SettingsPage";
 import {FriendsPage} from "@/b_pages/FriendsPage";
 import {MapPage} from "@/b_pages/MapPage";
+import {LoginPage} from "@/b_pages/LoginPage";
 import React from 'react'
+import {TopicPage} from "@/b_pages/TopicPage";
+import {RegisterPage} from "@/b_pages/RegisterPage";
+import {ProtectedAuthPage} from "@/b_pages/ProtectedAuthPage";
+import {CreateQuizPage} from "@/b_pages/CreateQuizPage";
+import {QuizDetailPage} from "@/b_pages/QuizDetailPage";
+import {QuizPlayPage} from "@/b_pages/QuizPlayPage";
 
 export const MainRouter = () => {
     return (
@@ -29,7 +36,7 @@ export const MainRouter = () => {
                     <LearnPage/>
                 </PageWithTabBar>
             }/>
-            <Route path={'/quizes'} element={
+            <Route path={'/quizzes'} element={
                 <PageWithTabBar>
                     <QuizesPage/>
                 </PageWithTabBar>
@@ -59,7 +66,26 @@ export const MainRouter = () => {
                     <MapPage/>
                 </PageWithTabBar>
             }/>
-
+            <Route path={'/modules/:moduleId'} element={
+                <TopicPage/>
+            }/>
+            <Route path={'/login'} element={
+                <LoginPage/>
+            }/>
+            <Route path={'/register'} element={
+                <RegisterPage/>
+            }/>
+            <Route path={"/quizzes/create"} element={
+                <ProtectedAuthPage>
+                    <CreateQuizPage/>
+                </ProtectedAuthPage>
+            }/>
+            <Route path={"/quizzes/:id"} element={
+                <QuizDetailPage/>
+            }/>
+            <Route path={"/quizzes/play"} element={
+                <QuizPlayPage/>
+            }/>
         </Routes>
     )
 }

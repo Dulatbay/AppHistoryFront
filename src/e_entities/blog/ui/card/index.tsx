@@ -7,10 +7,10 @@ import {ButtonTools} from "./ButtonTools";
 export const NewsLineCard = () => {
     return (
         <Stack alignSelf={'stretch'} gap={1}>
-            <Header />
-            <Images />
-            <TextContent />
-            <ButtonTools />
+            <Header/>
+            <Images/>
+            <TextContent/>
+            <ButtonTools/>
         </Stack>
     )
 }

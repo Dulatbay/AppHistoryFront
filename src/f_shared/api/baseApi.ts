@@ -1,4 +1,4 @@
-import {createApi} from "@reduxjs/toolkit/query";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import {MODULE_TAG, QUIZ_TAG, SESSION_TAG, TOPIC_TAG} from "./tags";
 import {baseQueryWithReauth} from "./baseQueryWithReauth";
 

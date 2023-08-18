@@ -1,7 +1,10 @@
-export function mapUser(dto) {
-  return {
-    id: dto.id,
-    email: dto.email,
-    username: dto.username,
-  }
+import {type UserDto} from '../api/types'
+import {type User} from '../model/types'
+
+export function mapUser(dto: UserDto): User {
+    return {
+        id: dto.id,
+        email: dto.email,
+        userName: dto.userName
+    }
 }

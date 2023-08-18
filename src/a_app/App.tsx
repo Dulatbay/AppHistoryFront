@@ -7,7 +7,7 @@ export default function App() {
     return (
         <MainProvider>
             <CssBaseline/>
-            <MainRouter />
+            <MainRouter/>
         </MainProvider>
     );
 }

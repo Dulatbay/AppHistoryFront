@@ -4,8 +4,12 @@ import {TitleText} from "@/f_shared/TitleText";
 import {ReactNode} from "react";
 
 
-interface TabLinkBoxProps {children : ReactNode, isActive:boolean}
-const TabLinkBox = ({children, isActive} : TabLinkBoxProps) => (
+interface TabLinkBoxProps {
+    children: ReactNode,
+    isActive: boolean
+}
+
+const TabLinkBox = ({children, isActive}: TabLinkBoxProps) => (
     <>
         <Box
             flex={'1'}

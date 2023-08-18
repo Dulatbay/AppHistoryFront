@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import {Stack} from "@mui/material";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -7,10 +7,12 @@ import {ReactNode} from "react";
 
 interface Props {
     title?: string,
-    cards: Array<ReactNode>
+    cards: Array<ReactNode> | undefined
 }
 
-export const CardsViewer = ({ title, cards } : Props) => {
+export const CardsViewer = ({title, cards}: Props) => {
+
+
     return (
         <Stack spacing={2}>
             {title && (
@@ -21,7 +23,7 @@ export const CardsViewer = ({ title, cards } : Props) => {
                 flexWrap={"wrap"}
                 gap={3}
             >
-                {cards.map((card, index) => (
+                {cards && cards.map((card, index) => (
                     <div key={index}>{card}</div>
                 ))}
             </Stack>

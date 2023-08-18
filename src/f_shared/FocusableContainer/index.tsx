@@ -1,12 +1,14 @@
 import {Box} from "@mui/material";
 import React, {ReactNode} from "react";
-interface Props{
-    children : ReactNode,
+
+interface Props {
+    children: ReactNode,
     boxShadowColor: string,
     focusColor: string,
     borderRadius: number
 }
-export const FocusableContainer = ({children, boxShadowColor, focusColor, borderRadius} : Props) => {
+
+export const FocusableContainer = ({children, boxShadowColor, focusColor, borderRadius}: Props) => {
     return (
         <Box borderRadius={borderRadius}
              overflow={'hidden'}

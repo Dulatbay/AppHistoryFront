@@ -2,10 +2,16 @@ import {Box, Divider, Stack, useTheme} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import styles from './style.module.css';
 import {ReactNode} from "react";
+import {selectIsAuthorized} from "@/e_entities/session";
+import {useSelector} from "react-redux";
 
 
-interface TabLinkProps {to:string, children:ReactNode}
-const TabLink = ({to, children} : TabLinkProps) => (
+interface TabLinkProps {
+    to: string,
+    children: ReactNode
+}
+
+const TabLink = ({to, children}: TabLinkProps) => (
     <NavLink to={to} style={{textDecoration: 'none'}}>
         {({isActive}) => (
             <span className={isActive ? styles.active : styles.link}>{children}</span>
@@ -14,6 +20,7 @@ const TabLink = ({to, children} : TabLinkProps) => (
 );
 
 export const TabBar = () => {
+    const isAuth = useSelector(selectIsAuthorized)
     const theme = useTheme();
     const dividerColor = theme.palette.divider
     const tabBarColor = theme.palette.secondary.main
@@ -36,13 +43,20 @@ export const TabBar = () => {
                 <TabLink to="/news-line">Лента</TabLink>
                 <Divider color={dividerColor} flexItem/>
                 <TabLink to="/learn">Обучение</TabLink>
-                <TabLink to="/quizes">Квизы</TabLink>
+                <TabLink to="/quizzes">Квизы</TabLink>
                 <TabLink to="/tournaments">Турниры</TabLink>
                 <TabLink to="/archive">Архив</TabLink>
                 <TabLink to="/map">Карта</TabLink>
                 <Divider color={dividerColor} flexItem/>
                 <TabLink to="/friends">Друзья</TabLink>
                 <TabLink to="/settings">Настройки</TabLink>
+                {!isAuth && (
+                    <>
+                        <Divider color={dividerColor} flexItem/>
+                        <TabLink to="/login">Авторизоваться</TabLink>
+                    </>
+                )
+                }
             </Stack>
         </Box>
     );

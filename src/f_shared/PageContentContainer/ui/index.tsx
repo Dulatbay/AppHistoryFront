@@ -1,9 +1,11 @@
 import {Box} from "@mui/material";
 import React, {ReactNode} from "react";
-interface Props{
-    children : ReactNode
+
+interface Props {
+    children: ReactNode
 }
-export const PageContentContainer = ({children} : Props) => {
+
+export const PageContentContainer = ({children}: Props) => {
     return (
         <>
             <Box sx={{

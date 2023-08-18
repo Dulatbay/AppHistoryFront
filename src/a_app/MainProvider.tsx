@@ -1,8 +1,15 @@
 import {BrowserRouter} from "react-router-dom";
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material";
 import {Provider as ReduxProvider} from "react-redux";
-import {configureStore} from "@reduxjs/toolkit";
-import React from "react";
+import React, {ReactNode} from "react";
+import {appStore, persistedStore} from "@/a_app/appStore";
+import {PersistGate} from 'redux-persist/integration/react'
+
+import {ToastContainer} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+// minified version is also included
+// import 'react-toastify/dist/ReactToastify.min.css';
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -42,18 +49,22 @@ const theme = responsiveFontSizes(createTheme({
 }));
 
 
-const store = configureStore({
-    reducer: {
-    }
-})
-
-export const MainProvider = ({children}) => {
+export const MainProvider = ({children}: { children: ReactNode }) => {
     return (
         <BrowserRouter>
-            <ReduxProvider store={store}>
-                <ThemeProvider theme={theme}>
-                    {children}
-                </ThemeProvider>
+            <ReduxProvider store={appStore}>
+                <PersistGate loading={null} persistor={persistedStore}>
+                    <ThemeProvider theme={theme}>
+                        <ToastContainer autoClose={5000}
+                                        hideProgressBar={false}
+                                        closeOnClick={true}
+                                        pauseOnHover={false}
+                                        draggable={true}
+                                        theme={"dark"}
+                        />
+                        {children}
+                    </ThemeProvider>
+                </PersistGate>
             </ReduxProvider>
         </BrowserRouter>
     )
