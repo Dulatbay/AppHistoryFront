@@ -7,11 +7,12 @@ import {rootReducer} from "@/a_app/rootReducer";
 import {baseApi} from "@/f_shared/api";
 import {invalidateAccessTokenListener} from "@/d_features/Authentication/invalidateAccessToken";
 import {quizSlice} from "@/e_entities/quiz";
+import {playedQuizSlice} from "@/d_features/PlayQuiz";
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: [sessionSlice.name, quizSlice.name],
+    whitelist: [sessionSlice.name, quizSlice.name, playedQuizSlice.name],
 }
 
 export function makeStore() {

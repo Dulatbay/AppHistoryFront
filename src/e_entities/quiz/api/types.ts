@@ -9,3 +9,8 @@ export interface QuizPostDto {
     level: number,
     isVerified: false
 }
+
+export interface QuizPassDto {
+    quizId: number,
+    choosesIndex: number[]
+}

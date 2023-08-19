@@ -3,7 +3,7 @@ import React, {ChangeEvent, useCallback, useState} from "react";
 import {Header} from "@/d_features/CreateQuizForm/ui/Header";
 import {QuestionForm} from "@/d_features/CreateQuizForm/ui/QuestionForm";
 import {Question} from "@/e_entities/question";
-import {QuizPostDto, useCreateQuizMutation} from "@/e_entities/quiz";
+import {QuizPostDto, useCreateQuizMutation, useSetImageMutation} from "@/e_entities/quiz";
 import {Navigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import {useGetTitlesQuery} from "@/e_entities/module";
@@ -13,9 +13,10 @@ export const CreateQuizForm = () => {
     const [description, setDescription] = useState("");
     const [questions, setQuestions] = useState(Array<Question>);
     const [createQuiz, {isSuccess, isError, isLoading, error}] = useCreateQuizMutation()
+    const [selectedImage, setSelectedImage] = useState<File | null>(null)
+    const [setImage] = useSetImageMutation()
 
     const {data} = useGetTitlesQuery()
-    console.log(data)
 
     const onTitleChange = useCallback((event: ChangeEvent) => {
         // @ts-ignore
@@ -41,14 +42,18 @@ export const CreateQuizForm = () => {
             level: Math.floor(getAvgLevel()),
             isVerified: false,
         };
-
         try {
-            const response = await createQuiz(quiz);
-            console.log("Quiz created:", response);
+            const res = await createQuiz(quiz).unwrap();
+            if (selectedImage != null) {
+                const formData = new FormData()
+                formData.append("file", selectedImage)
+                await setImage({id: res.id, formData})
+            }
         } catch (error) {
-            console.error("Error creating quiz:", error);
+            console.error("Error creating quiz:", error)
         }
-    }, [createQuiz, description, title, questions]);
+
+    }, [selectedImage, setImage, createQuiz, description, title, questions]);
 
     if (isSuccess)
         return <Navigate to={'/'}/>
@@ -72,7 +77,7 @@ export const CreateQuizForm = () => {
             </Backdrop>
             <Stack width={"50%"} gap={3}>
                 <Header onDescriptionChange={onDescriptionChange} onTitleChange={onTitleChange}
-                        description={description} title={title}/>
+                        description={description} title={title} setSelectedImage={setSelectedImage} selectedImage={selectedImage}/>
                 <Divider flexItem/>
                 <QuestionForm moduleTopicsTitle={data} questions={questions} setQuestions={setQuestions}/>
                 <Button disabled={questions.length < 2 || !title.trim().length}

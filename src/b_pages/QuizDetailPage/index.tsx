@@ -1,9 +1,8 @@
 import {PageContentContainer} from "@/f_shared/PageContentContainer";
 import {Backdrop, Box, Button, CircularProgress} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
-import {useGetDetailByIdQuery} from "@/e_entities/quiz/api/quizApi";
 import React from "react";
-import {clearData, QuizDetail} from "@/e_entities/quiz";
+import {clearData, QuizDetail, useGetDetailByIdQuery} from "@/e_entities/quiz";
 import {useDispatch} from "react-redux";
 
 export const QuizDetailPage = () => {

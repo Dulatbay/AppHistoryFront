@@ -30,8 +30,8 @@ export const QuizDetail = ({authorDto, id, questions, description, title, imageU
         >
             <Stack>
                 <TitleText>{title}</TitleText>
-                <Box width={200} height={200} sx={{background: "gray"}} borderRadius={4} mt={1}>
-                    <img src={imageUrl} alt={""}/>
+                <Box width={200} height={200} sx={{background: "gray"}} borderRadius={4} mt={1} overflow={"hidden"}>
+                    <img src={imageUrl} alt={""} style={{height: "100%"}}/>
                 </Box>
                 <Stack direction={"column"}>
                     <TitleText>{authorDto.username}</TitleText>
@@ -45,7 +45,7 @@ export const QuizDetail = ({authorDto, id, questions, description, title, imageU
                             fontSize={16}>Всего вопросов: {questions.length}</Typography>
                 <Typography sx={{opacity: 0.8}}
                             fontSize={16}>Средний
-                    результат: {averageResult === -1 ? "0%" : `${averageResult}%`}</Typography>
+                    результат: {averageResult === -1 ? "0%" : `${averageResult.toFixed(1)}%`}</Typography>
                 <Typography sx={{opacity: 0.8}}
                             fontSize={14}>Описание: {description}</Typography>
                 <Stack direction={"row"} justifyContent={"space-between"} mt={2}>

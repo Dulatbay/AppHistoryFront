@@ -14,7 +14,7 @@ export const logoutThunk = createAsyncThunk<void, void, { state: RootState }>(
         await wait(10)
 
         // 👇 ATTENTION: This line clear all baseApi state instead of sessionApi
-        // dispatch(sessionApi.util.resetApiState())
+        dispatch(sessionApi.util.resetApiState())
 
         dispatch(sessionApi.util.invalidateTags([SESSION_TAG]))
     }

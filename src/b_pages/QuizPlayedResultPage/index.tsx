@@ -1,13 +1,12 @@
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import {Box, Button} from "@mui/material";
 import {PageContentContainer} from "@/f_shared/PageContentContainer";
 import React from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {clearData} from "@/e_entities/quiz";
-import {QuizPlayContainer} from "@/c_widgets/QuizPlayHeader";
+import {clearData, QuizPlayedResultForm} from "@/d_features/PlayQuiz";
 import {sessionApi} from "@/e_entities/session";
 
-export const QuizPlayPage = () => {
+export const QuizPlayedResultPage = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const backButtonHandler = () => {
@@ -27,8 +26,8 @@ export const QuizPlayPage = () => {
                 <Button onClick={backButtonHandler}>{"<-"} Выйти</Button>
             </Box>
             <PageContentContainer>
-                <QuizPlayContainer/>
+                <QuizPlayedResultForm />
             </PageContentContainer>
         </Box>
-    );
+    )
 };

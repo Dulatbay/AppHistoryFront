@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {QuizDetail} from "@/e_entities/quiz/model/types";
+import {QuizDetailType} from "@/e_entities/quiz";
 
 
 type QuizState = {
@@ -41,21 +42,7 @@ export const {clearData, setQuiz, setChoosesIndex, setCurrentQuestionIndex} = qu
 export const selectQuizPlayState = (state: RootState) =>
     state.quiz
 
-export const getAvgResult = (state: RootState) => {
-    let correctAnswers = 0;
-    for (let i = 0; i < state.quiz.choosesIndex.length; i++) {
-        if (state.quiz.quizDetail?.questions[i].correctVariantIndex === state.quiz.choosesIndex[i]) {
-            correctAnswers++;
-        }
-    }
 
-    if (!state.quiz.quizDetail?.questions.length || correctAnswers === 0) {
-        return 0;
-    }
-
-    const totalQuestions = state.quiz.quizDetail?.questions.length;
-    return (correctAnswers / totalQuestions) * 100;
-}
 
 
 export default quizSlice.reducer;

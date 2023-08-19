@@ -17,6 +17,7 @@ import {ProtectedAuthPage} from "@/b_pages/ProtectedAuthPage";
 import {CreateQuizPage} from "@/b_pages/CreateQuizPage";
 import {QuizDetailPage} from "@/b_pages/QuizDetailPage";
 import {QuizPlayPage} from "@/b_pages/QuizPlayPage";
+import {QuizPlayedResultPage} from "@/b_pages/QuizPlayedResultPage";
 
 export const MainRouter = () => {
     return (
@@ -84,7 +85,14 @@ export const MainRouter = () => {
                 <QuizDetailPage/>
             }/>
             <Route path={"/quizzes/play"} element={
-                <QuizPlayPage/>
+                <ProtectedAuthPage>
+                    <QuizPlayPage/>
+                </ProtectedAuthPage>
+            }/>
+            <Route path={"/quizzes/play-result"} element={
+                <ProtectedAuthPage>
+                    <QuizPlayedResultPage/>
+                </ProtectedAuthPage>
             }/>
         </Routes>
     )
